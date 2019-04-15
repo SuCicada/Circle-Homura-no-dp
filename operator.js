@@ -18,52 +18,52 @@ function cursorsUpDonw(game){
         game.down_click = false;
     }
     */
+    this.stand = false;
 
     clickKey(game.cursors.up, function(){
         // game.player.y -= game.par;
-        if(game.player.direction.x == 0 && game.player.direction.y == -1) {
+        // if(game.player.direction.x == 0 && game.player.direction.y == -1) {
+        game.player.direction.x = 0;
+        game.player.direction.y = -1;
+        game.player.animations.play('up',1);
+        if(!game.SKey.isDown){
             playerMove(game);
-        }else{
-            game.player.direction.x = 0;
-            game.player.direction.y = -1;
-            game.player.animations.play('up',1);
         }
         // game.time.alive = true;
     },game);
 
     clickKey(game.cursors.down, function(){
         // game.player.y += game.par;
-        if(game.player.direction.x == 0 && game.player.direction.y == 1){
-            // 方向没变
+        // if(game.player.direction.x == 0 && game.player.direction.y == 1){
+        game.player.direction.y = 1;
+        game.player.direction.x = 0;
+        game.player.animations.play('down',1);
+        if(!game.SKey.isDown){
             playerMove(game);
-        }else{
-            game.player.direction.y = 1;
-            game.player.direction.x = 0;
-            game.player.animations.play('down',1);
         }
         // game.time.alive = true;
     },game);
 
     clickKey(game.cursors.left, function(){
         // game.player.x -= game.par;
-        if(game.player.direction.x == -1 && game.player.direction.y == 0) {
+        // if(game.player.direction.x == -1 && game.player.direction.y == 0) {
+        game.player.direction.x = -1;
+        game.player.direction.y = 0;
+        game.player.animations.play('left', 1);
+        if(!game.SKey.isDown){
             playerMove(game);
-        }else{
-            game.player.direction.x = -1;
-            game.player.direction.y = 0;
-            game.player.animations.play('left', 1);
         }
         // game.time.alive = true;
     },game);
 
     clickKey(game.cursors.right, function(){
         // game.player.x += game.par;
-        if(game.player.direction.x == 1 && game.player.direction.y == 0) {
+        // if(game.player.direction.x == 1 && game.player.direction.y == 0) {
+        game.player.direction.x = 1;
+        game.player.direction.y = 0;
+        game.player.animations.play('right', 1);
+        if(!game.SKey.isDown){
             playerMove(game);
-        }else{
-            game.player.direction.x = 1;
-            game.player.direction.y = 0;
-            game.player.animations.play('right', 1);
         }
         // game.time.alive = true;
     },game);
@@ -72,7 +72,7 @@ function cursorsUpDonw(game){
     clickKey(game.AKey, ()=>{
         bullet = game.group_bullet.create(
             // 创建新的子弹,位置在人物'前'方
-            game.player.x,// + game.direction.x * game.par,
+            game.player.x + game.par,// + game.direction.x * game.par,
             game.player.y,// + game.direction.y * game.par,
             'bullet');
         bullet.anchor.setTo(1,0);
@@ -100,9 +100,9 @@ function cursorsUpDonw(game){
         game.time.alive = true;
     },game);
     // == 移动视角 ===
-    clickKey(game.SKey, ()=>{
-
-    },game);
+    // clickKey(game.SKey, ()=>{
+    //
+    // },game);
 
     playerMove = (game)=>{
         // game.player.body.velocity.x = game.player.direction.x * 500;
